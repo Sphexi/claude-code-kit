@@ -9,7 +9,7 @@ Version 0.1.0. Add the marketplace once, then install what you want:
 /plugin install <plugin>@sphexi
 ```
 
-- [`sphexi-core`](#sphexi-core) — Thirteen specialist subagents; the systematic-debugging, code-comments, test-discipline and skill-creator skills; three terseness output styles; and a session-start hook that applies the comment and test standards.
+- [`sphexi-core`](#sphexi-core) — Thirteen specialist subagents; the systematic-debugging, code-comments, test-discipline and skill-creator skills; three terseness output styles; and a session-start hook that applies the comment and test standards and the Terse (Full) default.
 - [`sphexi-review`](#sphexi-review) — Code review, refactoring, testing and debugging: multi-perspective review, PR review agents, feature-dev workflow, TDD cycle, unit testing and accessibility audits.
 - [`sphexi-security`](#sphexi-security) — Security review: SAST, threat modelling, compliance checks, API and frontend hardening, dependency audits.
 - [`sphexi-python`](#sphexi-python) — Modern Python: python-pro, FastAPI and Django agents plus Python pattern skills.
@@ -23,7 +23,7 @@ Each plugin section below lists every agent, command, skill, output style and ho
 
 ## sphexi-core
 
-Thirteen specialist subagents; the systematic-debugging, code-comments, test-discipline and skill-creator skills; three terseness output styles; and a session-start hook that applies the comment and test standards.
+Thirteen specialist subagents; the systematic-debugging, code-comments, test-discipline and skill-creator skills; three terseness output styles; and a session-start hook that applies the comment and test standards and the Terse (Full) default.
 
 - Install: `/plugin install sphexi-core@sphexi`
 - Dependencies: none
@@ -69,7 +69,7 @@ Thirteen specialist subagents; the systematic-debugging, code-comments, test-dis
 
 | Name | What it does | Origin | Source | License |
 |---|---|---|---|---|
-| `SessionStart` | Adds the comment and test standards to every session's context. | Custom | this kit | MIT |
+| `SessionStart` | Adds the comment and test standards and the Terse (Full) default level to every session's context. | Custom | this kit | MIT |
 
 ### Upstream plugins
 

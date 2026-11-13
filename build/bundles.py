@@ -24,7 +24,8 @@ BUNDLES: tuple[Bundle, ...] = (
         CORE,
         "Thirteen specialist subagents; the systematic-debugging, code-comments, "
         "test-discipline and skill-creator skills; three terseness output styles; and a "
-        "session-start hook that applies the comment and test standards.",
+        "session-start hook that applies the comment and test standards and the Terse (Full) "
+        "default.",
         ("skill-creator",),
         category="workflow",
         tags=("agents", "skills", "output-styles", "code-standards"),

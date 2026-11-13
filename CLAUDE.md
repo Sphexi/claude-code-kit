@@ -79,8 +79,10 @@ plugins/ + cowork/ ──build_plugins.py --zip──▶ dist/*.zip
   dependencies, `sphexi-core`, nor the built-in agents.
 - **Core.** `plugins/sphexi-core` holds the 13 agents, the authored skills plus vendored
   `skill-creator`, the three output styles, and a SessionStart hook that prints the code
-  standards. Deploy installs core's agents, skills and output styles as user-level files and
-  never installs the hook — the deployed global `CLAUDE.md` already carries those standards.
+  standards and the `terse-full` level (header in `shared/session-rules.header.md`). Deploy
+  installs core's agents, skills and output styles as user-level files and never installs the
+  hook — the deployed global `CLAUDE.md` carries the standards and `settings.json` sets
+  `Terse (Full)`.
 - **Hook payload size.** SessionStart output is capped at 10,000 characters per hook string,
   so the build splits each payload at `## ` headings into chunks of at most 9,500 characters,
   one hook command per chunk, and fails if a single section exceeds that.

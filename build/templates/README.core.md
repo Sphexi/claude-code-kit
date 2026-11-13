@@ -23,9 +23,9 @@ Part of [claude-code-kit]({{REPOSITORY}}) {{VERSION}}. Licensed {{LICENSE}}.
 
 Vendored: {{VENDOR_SKILL_LIST}}.
 
-**{{STYLE_COUNT}} output styles** — `terse-low`, `terse-medium`, `terse-full`. Select one with `/output-style`; the plugin never forces one. The levels vary how much supporting explanation survives, not grammar. The register rules (no agreement tokens, no graded findings, no teasers, no narration of conduct, no same-turn repetition) hold at every level.
+**{{STYLE_COUNT}} output styles** — `terse-low`, `terse-medium`, `terse-full`. `terse-full` is applied by default through the session-start hook below; select another with `/output-style` to override it. The levels vary how much supporting explanation survives, not grammar. The register rules (no agreement tokens, no graded findings, no teasers, no narration of conduct, no same-turn repetition) hold at every level.
 
-**Code standards at session start.** A `SessionStart` hook prints {{HOOK_PARTS}} into the session: the comment and test standards that govern code written in it. Each part is at most 9,500 characters, under Claude Code's 10,000-character cap per hook string.
+**Standards and terseness at session start.** A `SessionStart` hook prints {{HOOK_PARTS}} into the session: the comment and test standards that govern code written in it, and the `terse-full` level as the default response style. Each part is at most 9,500 characters, under Claude Code's 10,000-character cap per hook string.
 
 ## What a plugin cannot deliver
 
@@ -37,7 +37,7 @@ A global `CLAUDE.md`, merged `settings.json` and the routing tables that name th
 
 ## Cowork
 
-The Cowork zip adds a `terseness` skill that switches level mid-session and a second hook that applies `terse-full` at session start, because Cowork has no output-style mechanism.
+The Cowork zip adds a `terseness` skill that switches level mid-session, because Cowork has no output-style mechanism.
 
 ## Attribution
 

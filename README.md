@@ -43,7 +43,7 @@ Deploy writes nothing without `--apply`, merges into an existing `settings.json`
 
 | Plugin | Contents |
 |---|---|
-| `sphexi-core` | Thirteen specialist subagents, four skills, three terseness output styles, and a session-start hook for the code standards |
+| `sphexi-core` | Thirteen specialist subagents, four skills, three terseness output styles, and a session-start hook that applies the code standards and Terse (Full) by default |
 | `sphexi-review` | Code review, refactoring, testing and debugging agents and commands; feature-dev workflow; TDD cycle; accessibility audits |
 | `sphexi-security` | SAST, threat modelling, compliance checks, API and frontend hardening, dependency audits |
 | `sphexi-python` | `python-pro`, FastAPI and Django agents, Python pattern skills, project scaffolding |

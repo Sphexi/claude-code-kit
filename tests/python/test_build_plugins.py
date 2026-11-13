@@ -73,7 +73,7 @@ def fake_repo(bp: ModuleType, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -
     write(root / "shared" / "code-standards.md",
           "## Comments\n\nA comment says why.\n\n## Tests\n\nTests earn their place.\n")
     write(root / "cowork" / "skills" / "terseness" / "SKILL.md", "---\nname: terseness\n---\n")
-    write(root / "cowork" / "hooks" / "session-rules.header.md", "Level terse-full is in effect.\n")
+    write(root / "shared" / "session-rules.header.md", "Level terse-full is in effect.\n")
 
     vendor_plugin(root, "core-lib", APACHE_HEAD,
                   **{"skills/lib-skill/SKILL.md": "---\nname: lib-skill\n---\n"})
@@ -231,7 +231,8 @@ def test_core_and_bundle_trees_have_the_designed_file_lists_and_licenses(
 
     assert sorted(trees[CORE_NAME]) == [
         ".claude-plugin/plugin.json", "LICENSE", "README.md", "agents/alpha.md", "agents/beta.md",
-        "hooks/code-standards-1.md", "hooks/hooks.json", "notices/core-lib/LICENSE",
+        "hooks/code-standards-1.md", "hooks/hooks.json", "hooks/session-rules-1.md",
+        "notices/core-lib/LICENSE",
         "notices/core-lib/UPSTREAM.md", "output-styles/terse-full.md",
         "output-styles/terse-low.md", "output-styles/terse-medium.md",
         "skills/lib-skill/SKILL.md", "skills/own-skill/SKILL.md",
@@ -302,8 +303,7 @@ def test_zips_are_reproducible_and_core_carries_the_cowork_overlay(
         hooks = json.loads(core.read("hooks/hooks.json"))["hooks"]["SessionStart"][0]["hooks"]
         assert core_names - committed_core == {
             "skills/terseness/SKILL.md", "skills/terseness/levels/terse-full.md",
-            "skills/terseness/levels/terse-low.md", "skills/terseness/levels/terse-medium.md",
-            "hooks/session-rules-1.md"}
+            "skills/terseness/levels/terse-low.md", "skills/terseness/levels/terse-medium.md"}
         assert [h["command"].rsplit("/", 1)[1].rstrip('"') for h in hooks] == [
             "code-standards-1.md", "session-rules-1.md"]
         assert core.read("skills/terseness/levels/terse-full.md").decode().startswith("# terse-full")

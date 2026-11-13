@@ -1,7 +1,7 @@
 {
   "name": "sphexi-core",
   "version": "0.1.0",
-  "description": "Thirteen specialist subagents; the systematic-debugging, code-comments, test-discipline and skill-creator skills; three terseness output styles; and a session-start hook that applies the comment and test standards.",
+  "description": "Thirteen specialist subagents; the systematic-debugging, code-comments, test-discipline and skill-creator skills; three terseness output styles; and a session-start hook that applies the comment and test standards and the Terse (Full) default.",
   "author": {
     "name": "sphexi",
     "url": "https://github.com/sphexi"

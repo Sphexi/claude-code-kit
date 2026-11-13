@@ -64,7 +64,7 @@ the debate replayed, and a paragraph defending a number is the commonest way pro
 back after a reduction pass. Two disguises to watch for. A comment that begins as a real
 constraint and then keeps going has stopped qualifying partway through — keep the sentence
 naming the constraint, delete the paragraph arguing for it. And an argument can be dressed
-as an invariant: *"this must stay at 64 MiB because a login storm concurrent with a bake
+as an invariant: *"this must stay at 64 MiB because two concurrent jobs at peak load
 would push the host into swap"* is a case for a value, not an invariant the code depends on.
 
 A citation behaves the same way. A link to an upstream **defect** being worked around, or to

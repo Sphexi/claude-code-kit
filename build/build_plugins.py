@@ -410,12 +410,19 @@ def agent_model(path: Path) -> str:
 
 
 def core_hook_parts(root: Path) -> tuple[list[str], Files]:
-    """Chunk the code standards and return the hook file names with their contents."""
+    """Chunk the code standards and the default terseness level; return hook file names and contents."""
     source = root / "shared" / "code-standards.md"
-    if not source.is_file():
-        raise BuildError(f"missing code standards source: {source}")
+    header = root / "shared" / "session-rules.header.md"
+    for path in (source, header):
+        if not path.is_file():
+            raise BuildError(f"missing hook source: {path}")
+    levels = level_files(root)
+    if DEFAULT_LEVEL not in levels:
+        raise BuildError(f"default level {DEFAULT_LEVEL!r} has no output style")
     files = hook_files("code-standards", chunk_text(source.read_text(encoding="utf-8"),
                                                     "Code Standards"))
+    session = header.read_text(encoding="utf-8").rstrip("\n") + "\n\n" + levels[DEFAULT_LEVEL].lstrip()
+    files.update(hook_files("session-rules", chunk_text(session, "Response Style")))
     return [Path(name).name for name in files], files
 
 
@@ -437,7 +444,8 @@ def core_files(root: Path, bundle: Bundle, index: Index, manifest: dict, kit: di
     names, hooks = core_hook_parts(root)
     files.update(hooks)
     files["hooks/hooks.json"] = hooks_json(
-        names, "Applies the kit's comment and test standards at session start.")
+        names, "Applies the kit's comment and test standards and the default terseness level "
+               "at session start.")
     files.update(notice_files(root, bundle))
 
     own = [p.name for p in own_skill_dirs(root)]
@@ -707,7 +715,7 @@ def component_sections(root: Path, bundle: Bundle, index: Index, licenses: dict[
         out += ["", "### Output styles", "", *component_table(rows)]
         out += ["", "### Hooks", "", *component_table([(
             "`SessionStart`",
-            "Adds the comment and test standards to every session's context.",
+            "Adds the comment and test standards and the Terse (Full) default level to every session's context.",
             "Custom", "this kit", kit.get("license", "MIT"))])]
     return out
 
@@ -840,28 +848,14 @@ def level_files(root: Path) -> dict[str, str]:
 
 
 def cowork_core_files(root: Path, core: Files) -> Files:
-    """Return the core tree plus the Cowork-only terseness skill and session-rules hook."""
-    header = root / "cowork" / "hooks" / "session-rules.header.md"
+    """Return the core tree plus the Cowork-only terseness skill."""
     skill = root / "cowork" / "skills" / "terseness"
-    if not header.is_file() or not skill.is_dir():
+    if not skill.is_dir():
         raise BuildError("cowork/ overlay is incomplete")
-    levels = level_files(root)
-    if DEFAULT_LEVEL not in levels:
-        raise BuildError(f"default level {DEFAULT_LEVEL!r} has no output style")
-
     files = dict(core)
     files.update(tree_files(skill, "skills/terseness"))
-    for stem, body in levels.items():
+    for stem, body in level_files(root).items():
         files[f"skills/terseness/levels/{stem}.md"] = text_bytes(body)
-
-    session = header.read_text(encoding="utf-8").rstrip("\n") + "\n\n" + levels[DEFAULT_LEVEL].lstrip()
-    session_files = hook_files("session-rules", chunk_text(session, "Response Style"))
-    files.update(session_files)
-    standards = sorted((n for n in core if re.fullmatch(r"hooks/code-standards-\d+\.md", n)),
-                       key=lambda n: int(re.findall(r"\d+", n)[-1]))
-    files["hooks/hooks.json"] = hooks_json(
-        [Path(n).name for n in standards] + [Path(n).name for n in session_files],
-        "Applies the kit's comment and test standards and the default terseness level at session start.")
     return files
 
 

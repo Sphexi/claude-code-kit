@@ -17,7 +17,7 @@ All notable changes to claude-code-kit are recorded here. The format follows [Ke
 - Settings composed from a base file and a Linux, macOS or Windows overlay, merged into the live `settings.json` without replacing user values. The base sets a permission deny list, including `git push`, and a default output style; it sets no model, permission mode or allow rules.
 - Pre-flight warnings for managed settings that disable `skills-dir` plugins and for marketplace installs that duplicate a deployment.
 - `refresh.sh` and `refresh.ps1`: a three-way comparison of the clone, the state file and the live directory, with `matched`, `missing`, `behind`, `modified`, `retired` and `unmanaged` classes, per-unit prompts, `--yes-safe`, and `adopt` for copying live edits back into the clone.
-- Cowork zips, one per plugin, with a core zip that adds a `terseness` skill and a session-start hook for the default level.
+- Cowork zips, one per plugin, with a core zip that adds a `terseness` skill. The `sphexi-core` session-start hook applies Terse (Full) by default on every path except clone-and-deploy, where `settings.json` sets it.
 - Global `CLAUDE.md` covering git policy, code standards, terseness levels, activity callouts and agent routing tables.
 - Generators: `build/build_plugins.py` (plugins, marketplace listing, notices, catalogue, zips; `--check`, `--zip`), `build/inline_shared.py` (shared prose blocks; `--check`), and `tools/vendor_sync.py` (vendored content and provenance; `--apply`, `--only`, `--marketplaces`, `--render-upstream`).
 - `THIRD_PARTY_NOTICES.md`, generated per-plugin `LICENSE` and `UPSTREAM.md` files, and in-file notices on modified Apache-2.0 files.

@@ -85,7 +85,7 @@ A plugin carries agents, skills, commands, hooks and output styles. It cannot ca
 - A global `CLAUDE.md`. This holds the git policy, the code standards, the terseness description, the activity callouts and the agent routing tables.
 - Entries in `settings.json`: the permission deny list and the default output style.
 
-The `sphexi-core` plugin compensates for the first gap with a `SessionStart` hook that prints the code standards into each session, and for the second by shipping output styles you select with `/output-style`; it never forces one. Everything else in the global `CLAUDE.md` and `settings.json` comes only from [clone and deploy](deploy.md).
+The `sphexi-core` plugin compensates for the first gap with a `SessionStart` hook that prints the code standards into each session, and for the second by having the same hook apply `Terse (Full)` as the default level. Selecting `Terse (Low)` or `Terse (Medium)` with `/output-style` overrides it. Everything else in the global `CLAUDE.md` and `settings.json` comes only from [clone and deploy](deploy.md).
 
 ## Combining with a deployment
 

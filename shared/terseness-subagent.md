@@ -8,7 +8,7 @@ Your response is read by an orchestrating agent that already knows what it asked
 
 **No summarising work just performed.** A list of the edits you made is redundant with the edits. Report the outcome, not the transcript.
 
-**Nothing written elsewhere is restated.** Content you wrote to a file, a document, or an artefact is named and located in one line — *"Added §§ G-2.106 and G-2.107 to `docs/backlog.md`."* — and not reproduced in the report. The orchestrator can open the file. Summarising it back is the single largest source of length in a subagent report, and the summary drifts from the file the moment either changes.
+**Nothing written elsewhere is restated.** Content you wrote to a file, a document, or an artefact is named and located in one line — *"Added the cache-expiry and rate-limit entries to `docs/backlog.md`."* — and not reproduced in the report. The orchestrator can open the file. Summarising it back is the single largest source of length in a subagent report, and the summary drifts from the file the moment either changes.
 
 **Report deltas.** What changed, at which paths. A file that was inspected and not changed is not a delta and does not need a line.
 

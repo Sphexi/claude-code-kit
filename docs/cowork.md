@@ -15,8 +15,6 @@ Every zip except core is the plugin directory unchanged.
 Cowork has no output-style mechanism and no global `CLAUDE.md`, so the core zip carries the plugin tree plus:
 
 - `skills/terseness/`: a skill that switches terseness level mid-session. Its `levels/` directory holds `terse-low.md`, `terse-medium.md` and `terse-full.md`, derived from the output styles.
-- `hooks/session-rules-<n>.md`: a short header and the `terse-full` level, split into parts of at most 9,500 characters.
-- A `hooks/hooks.json` that runs the code-standards parts and then the session-rules parts at session start.
 
 The result is that a Cowork session starts at `terse-full` with the code standards applied, and the `terseness` skill changes the level on request: "terse low", "terse medium", "terse full" or "normal". The register rules do not change with the level. See [terseness-and-standards.md](terseness-and-standards.md).
 

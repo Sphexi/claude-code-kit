@@ -64,11 +64,11 @@ The `code-comments` and `test-discipline` skills in `sphexi-core` hold the worke
 | Destination | Terseness | Code standards |
 |---|---|---|
 | Main session, clone and deploy | `outputStyle` in `settings.json`; the global `CLAUDE.md` describes the levels and the register rules | Inlined in the global `CLAUDE.md` |
-| Main session, marketplace | Output styles from `sphexi-core`, selected with `/output-style` | A `SessionStart` hook in `sphexi-core` prints the standards at session start |
+| Main session, marketplace | A `SessionStart` hook in `sphexi-core` applies `Terse (Full)` by default; another output style selected with `/output-style` overrides it | The same hook prints the standards at session start |
 | Subagents, both paths | Inlined in each agent definition | Inlined in each agent definition |
-| Cowork | A `terseness` skill and a hook that applies `Terse (Full)` at session start | The same `SessionStart` hook as the marketplace |
+| Cowork | The same `SessionStart` hook as the marketplace, plus a `terseness` skill to switch level | The same `SessionStart` hook as the marketplace |
 
-The hook splits its text at `##` headings into parts of at most 9,500 characters, one hook command per part, because Claude Code caps each hook output string at 10,000 characters and substitutes a file path and short preview above that. Deploy does not install the hook, since the global `CLAUDE.md` already carries the standards. See [cowork.md](cowork.md) for the Cowork additions.
+The hook splits its text at `##` headings into parts of at most 9,500 characters, one hook command per part, because Claude Code caps each hook output string at 10,000 characters and substitutes a file path and short preview above that. Deploy does not install the hook, since the global `CLAUDE.md` already carries the standards and `settings.json` sets `Terse (Full)`. See [cowork.md](cowork.md) for the Cowork additions.
 
 A skill is not a delivery path. It loads only when its description matches the task, so the rules cannot rest on skills alone.
 
