@@ -18,7 +18,7 @@ SILENT = lambda _line: None  # noqa: E731
 
 def _write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 @pytest.fixture()
@@ -35,7 +35,7 @@ def test_dry_runs_change_nothing_in_the_live_dir_or_the_repo(
     fake_repo: Path, deployed: Path
 ) -> None:
     _write(fake_repo / "plugins" / CORE / "agents" / "alpha.md", "alpha v2\n")
-    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8")
+    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8", newline="\n")
     (deployed / "output-styles" / "terse.md").unlink()
     (fake_repo / "plugins" / CORE / "skills" / "own-skill" / "SKILL.md").unlink()
     _write(deployed / "agents" / "mine.md", "mine\n")
@@ -79,7 +79,7 @@ def test_updating_a_behind_unit_needs_no_backup_and_a_modified_one_gets_one(
     fake_repo: Path, deployed: Path
 ) -> None:
     _write(fake_repo / "plugins" / CORE / "agents" / "alpha.md", "alpha v2\n")
-    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8")
+    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8", newline="\n")
     _write(fake_repo / "plugins" / CORE / "agents" / "beta.md", "beta v2\n")
     result = compare_repo(fake_repo, deployed)
 
@@ -112,7 +112,7 @@ def test_remove_deletes_retired_files_unless_they_were_modified(
 ) -> None:
     (fake_repo / "plugins" / CORE / "agents" / "alpha.md").unlink()
     (fake_repo / "plugins" / CORE / "agents" / "beta.md").unlink()
-    (deployed / "agents" / "beta.md").write_text("edited\n", encoding="utf-8")
+    (deployed / "agents" / "beta.md").write_text("edited\n", encoding="utf-8", newline="\n")
     result = compare_repo(fake_repo, deployed)
 
     gone = actions.remove(unit(result, "alpha"), deployed, apply=True, log=SILENT)
@@ -142,7 +142,7 @@ def test_adopt_copies_live_content_into_claude_and_records_it(
     fake_repo: Path, deployed: Path
 ) -> None:
     _write(fake_repo / "claude" / "agents" / "alpha.md", "authored\n")
-    (deployed / "agents" / "alpha.md").write_text("improved\n", encoding="utf-8")
+    (deployed / "agents" / "alpha.md").write_text("improved\n", encoding="utf-8", newline="\n")
     _write(deployed / "agents" / "mine.md", "mine\n")
     _write(deployed / "skills" / "hand" / "SKILL.md", "hand\n")
     result = compare_repo(fake_repo, deployed)
@@ -160,8 +160,8 @@ def test_adopt_copies_live_content_into_claude_and_records_it(
 
 
 def test_adopt_refusals(fake_repo: Path, deployed: Path) -> None:
-    (deployed / "skills" / REVIEW / "agents" / "reviewer.md").write_text("e\n", encoding="utf-8")
-    (deployed / "agents" / "beta.md").write_text("edited\n", encoding="utf-8")
+    (deployed / "skills" / REVIEW / "agents" / "reviewer.md").write_text("e\n", encoding="utf-8", newline="\n")
+    (deployed / "agents" / "beta.md").write_text("edited\n", encoding="utf-8", newline="\n")
     _write(deployed / "skills" / "mystery" / "README.md", "x\n")
     result = compare_repo(fake_repo, deployed)
 

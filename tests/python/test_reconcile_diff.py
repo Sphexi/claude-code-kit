@@ -16,7 +16,7 @@ REVIEW = "sphexi-review"
 
 def _write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 @pytest.fixture()
@@ -45,7 +45,7 @@ def test_each_class_is_assigned_from_live_state_and_recorded_hashes(
     fake_repo: Path, deployed: Path
 ) -> None:
     _write(fake_repo / "plugins" / CORE / "agents" / "alpha.md", "alpha v2\n")
-    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8")
+    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8", newline="\n")
     (deployed / "output-styles" / "terse.md").unlink()
     (fake_repo / "plugins" / CORE / "skills" / "own-skill" / "SKILL.md").unlink()
     _write(deployed / "agents" / "mine.md", "mine\n")
@@ -77,7 +77,7 @@ def test_plugin_units_roll_up_with_modified_dominating_and_foreign_files_counted
     fake_repo: Path, deployed: Path
 ) -> None:
     bundle = deployed / "skills" / REVIEW
-    (bundle / "agents" / "reviewer.md").write_text("edit\n", encoding="utf-8")
+    (bundle / "agents" / "reviewer.md").write_text("edit\n", encoding="utf-8", newline="\n")
     _write(fake_repo / "plugins" / REVIEW / "skills" / "helper" / "SKILL.md", "helper v2\n")
     _write(bundle / "my-notes.md", "foreign\n")
 
@@ -128,7 +128,7 @@ def test_settings_are_a_subset_check_that_keeps_user_values(fake_repo: Path) -> 
 
 def test_symlinks_are_skipped_and_reported(fake_repo: Path, tmp_claude_home: Path, tmp_path: Path) -> None:
     target = tmp_path / "elsewhere.md"
-    target.write_text("x", encoding="utf-8")
+    target.write_text("x", encoding="utf-8", newline="\n")
     (tmp_claude_home / "agents").mkdir()
     try:
         os.symlink(target, tmp_claude_home / "agents" / "linked.md")

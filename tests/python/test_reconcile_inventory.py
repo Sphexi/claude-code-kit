@@ -16,7 +16,7 @@ REVIEW = "sphexi-review"
 
 def _write(path: Path, text: str = "x\n") -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 @pytest.mark.parametrize(
@@ -63,7 +63,9 @@ def test_scan_repo_settings_entry_only_when_composed(fake_repo: Path) -> None:
     assert with_text.files["settings.json"].source is None
 
 
-def test_scan_repo_reports_case_insensitive_collisions(fake_repo: Path) -> None:
+def test_scan_repo_reports_case_insensitive_collisions(
+    fake_repo: Path, case_sensitive_fs: None
+) -> None:
     _write(fake_repo / "plugins" / CORE / "agents" / "Alpha.md")
 
     inv = inventory.scan_repo(fake_repo, payload.Selection((CORE,)))

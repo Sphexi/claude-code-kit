@@ -30,6 +30,15 @@ def _write_json(path: Path, data: object) -> None:
 
 
 @pytest.fixture()
+def case_sensitive_fs(tmp_path: Path) -> None:
+    """Skip unless ``tmp_path`` can hold two names differing only by case."""
+    (tmp_path / "case-probe").touch()
+    if (tmp_path / "CASE-PROBE").exists():
+        pytest.skip("filesystem is case-insensitive; two names differing by case cannot coexist")
+    (tmp_path / "case-probe").unlink()
+
+
+@pytest.fixture()
 def repo_root() -> Path:
     """Absolute path of the repository root."""
     return _REPO_ROOT

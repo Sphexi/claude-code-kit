@@ -18,7 +18,7 @@ REVIEW = "sphexi-review"
 
 def _write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 def _render(result: diff.DiffResult, home: Path, **kwargs) -> str:
@@ -52,7 +52,7 @@ def test_banner_marks_dry_runs_and_applies_at_top_and_bottom(
 def test_plugin_is_one_line_unless_verbose_and_unmanaged_is_counted_not_listed(
     fake_repo: Path, deployed: Path
 ) -> None:
-    (deployed / "skills" / REVIEW / "agents" / "reviewer.md").write_text("e\n", encoding="utf-8")
+    (deployed / "skills" / REVIEW / "agents" / "reviewer.md").write_text("e\n", encoding="utf-8", newline="\n")
     _write(deployed / "agents" / "mine.md", "mine\n")
     result = compare_repo(fake_repo, deployed, plugins=(CORE, REVIEW))
 
@@ -103,7 +103,7 @@ def test_apply_without_a_tty_changes_only_what_yes_safe_covers(
 ) -> None:
     _write(fake_repo / "plugins" / CORE / "agents" / "alpha.md", "alpha v2\n")
     (deployed / "output-styles" / "terse.md").unlink()
-    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8")
+    (deployed / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8", newline="\n")
     _write(fake_repo / "plugins" / CORE / "agents" / "beta.md", "beta v2\n")
     (fake_repo / "plugins" / CORE / "skills" / "own-skill" / "SKILL.md").unlink()
     _write(deployed / "agents" / "mine.md", "mine\n")
@@ -140,7 +140,7 @@ def test_yes_safe_creates_missing_settings_but_never_merges_into_an_existing_fil
 ) -> None:
     deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE])
     settings = tmp_claude_home / "settings.json"
-    settings.write_text("{}", encoding="utf-8")
+    settings.write_text("{}", encoding="utf-8", newline="\n")
 
     assert _run(fake_repo, tmp_claude_home, "--apply", "--yes-safe") == 0
     assert settings.read_text(encoding="utf-8") == "{}"
@@ -164,8 +164,15 @@ def test_unusable_inputs_exit_two(
     assert _run(fake_repo.parent / "missing", tmp_claude_home) == 2
     _write(tmp_claude_home / state.STATE_FILENAME, "{bad")
     assert _run(fake_repo, tmp_claude_home) == 2
-    (tmp_claude_home / state.STATE_FILENAME).unlink()
+    assert "error:" in capsys.readouterr().err
+
+
+def test_a_case_insensitive_collision_in_the_payload_exits_two(
+    fake_repo: Path, tmp_claude_home: Path, case_sensitive_fs: None,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
     _write(fake_repo / "plugins" / CORE / "agents" / "Alpha.md", "dup\n")
+
     assert _run(fake_repo, tmp_claude_home, "--apply") == 2
     assert "error:" in capsys.readouterr().err
 
@@ -173,8 +180,8 @@ def test_unusable_inputs_exit_two(
 def test_load_live_settings_tolerates_absence_and_damage(tmp_claude_home: Path) -> None:
     assert cli.load_live_settings(tmp_claude_home) is None
 
-    (tmp_claude_home / "settings.json").write_text("{nope", encoding="utf-8")
+    (tmp_claude_home / "settings.json").write_text("{nope", encoding="utf-8", newline="\n")
     assert cli.load_live_settings(tmp_claude_home) is None
 
-    (tmp_claude_home / "settings.json").write_text(json.dumps([1]), encoding="utf-8")
+    (tmp_claude_home / "settings.json").write_text(json.dumps([1]), encoding="utf-8", newline="\n")
     assert cli.load_live_settings(tmp_claude_home) is None

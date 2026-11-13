@@ -24,7 +24,7 @@ def _targets(placements: list[payload.Placement]) -> dict[str, tuple[str, str]]:
 
 def _write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 # --- layout -----------------------------------------------------------------
@@ -77,7 +77,7 @@ def test_dry_run_changes_nothing_on_any_destructive_path(
 ) -> None:
     deploy_repo(fake_repo, tmp_claude_home, plugins=ALL_PLUGINS)
     _write(fake_repo / "plugins" / CORE / "agents" / "alpha.md", "changed\n")
-    (tmp_claude_home / "agents" / "beta.md").write_text("edited\n", encoding="utf-8")
+    (tmp_claude_home / "agents" / "beta.md").write_text("edited\n", encoding="utf-8", newline="\n")
     _write(fake_repo / "plugins" / CORE / "agents" / "beta.md", "newer\n")
     before = snapshot(tmp_claude_home)
 
@@ -138,7 +138,7 @@ def test_deploy_options_select_content(fake_repo: Path, tmp_claude_home: Path) -
 
 
 def test_case_insensitive_target_collision_is_an_error(
-    fake_repo: Path, tmp_claude_home: Path
+    fake_repo: Path, tmp_claude_home: Path, case_sensitive_fs: None
 ) -> None:
     _write(fake_repo / "plugins" / CORE / "agents" / "Alpha.md", "dup\n")
 
@@ -181,7 +181,7 @@ def test_redeploy_updates_unmodified_files_and_protects_edited_ones(
 ) -> None:
     deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE])
     _write(fake_repo / "plugins" / CORE / "agents" / "alpha.md", "alpha v2\n")
-    (tmp_claude_home / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8")
+    (tmp_claude_home / "agents" / "beta.md").write_text("user edit\n", encoding="utf-8", newline="\n")
     _write(fake_repo / "plugins" / CORE / "agents" / "beta.md", "beta v2\n")
 
     plan = deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE])
@@ -200,7 +200,7 @@ def test_dropping_a_plugin_removes_only_unmodified_kit_files(
     deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE, REVIEW])
     unit_dir = tmp_claude_home / "skills" / REVIEW
     edited = unit_dir / "agents" / "reviewer.md"
-    edited.write_text("my reviewer\n", encoding="utf-8")
+    edited.write_text("my reviewer\n", encoding="utf-8", newline="\n")
     personal = tmp_claude_home / "skills" / "personal" / "SKILL.md"
     _write(personal, "personal\n")
 
@@ -218,7 +218,7 @@ def test_symlinked_target_is_never_written_through(
     fake_repo: Path, tmp_claude_home: Path, tmp_path: Path
 ) -> None:
     outside = tmp_path / "outside.md"
-    outside.write_text("outside\n", encoding="utf-8")
+    outside.write_text("outside\n", encoding="utf-8", newline="\n")
     (tmp_claude_home / "agents").mkdir()
     try:
         os.symlink(outside, tmp_claude_home / "agents" / "alpha.md")
@@ -239,7 +239,7 @@ def test_settings_merge_keeps_user_content_and_backs_up_once(
     fake_repo: Path, tmp_claude_home: Path
 ) -> None:
     live = {"outputStyle": "Mine", "theme": "dark", "permissions": {"deny": ["Bash(x)"]}}
-    (tmp_claude_home / "settings.json").write_text(json.dumps(live), encoding="utf-8")
+    (tmp_claude_home / "settings.json").write_text(json.dumps(live), encoding="utf-8", newline="\n")
 
     first = deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE])
     second = deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE])
@@ -260,7 +260,7 @@ def test_settings_merge_keeps_user_content_and_backs_up_once(
 def test_invalid_live_settings_are_left_untouched(
     fake_repo: Path, tmp_claude_home: Path
 ) -> None:
-    (tmp_claude_home / "settings.json").write_text("{not json", encoding="utf-8")
+    (tmp_claude_home / "settings.json").write_text("{not json", encoding="utf-8", newline="\n")
 
     plan = deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE])
 
@@ -279,7 +279,7 @@ def test_uninstall_keeps_a_pruned_state_file_for_modified_files_left_behind(
     )
     _write(tmp_claude_home / "agents" / "mine.md", "mine\n")
     deploy_repo(fake_repo, tmp_claude_home, plugins=[CORE, REVIEW])
-    (tmp_claude_home / "agents" / "beta.md").write_text("edited\n", encoding="utf-8")
+    (tmp_claude_home / "agents" / "beta.md").write_text("edited\n", encoding="utf-8", newline="\n")
 
     plan = deploy.run_uninstall(
         tmp_claude_home, apply=True, log=lambda _l: None, timestamp=STAMP
