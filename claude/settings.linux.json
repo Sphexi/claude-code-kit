@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf /etc/*)",
+      "Bash(rm -rf /usr/*)",
+      "Bash(rm -rf /var/*)",
+      "Bash(rm -rf /boot/*)",
+      "Bash(mkswap *)",
+      "Bash(fdisk *)",
+      "Bash(parted *)",
+      "Bash(chmod -R 777 /*)",
+      "Bash(chown -R * /)",
+      "Bash(shutdown *)",
+      "Bash(reboot)",
+      "Bash(reboot *)",
+      "Bash(halt)",
+      "Bash(init 0)",
+      "Bash(init 6)",
+      "Read(/etc/shadow)",
+      "Read(/etc/gshadow)",
+      "Read(/etc/sudoers)",
+      "Read(/etc/sudoers.d/**)",
+      "Edit(/etc/shadow)",
+      "Edit(/etc/sudoers)",
+      "Edit(/etc/sudoers.d/**)",
+      "Edit(/boot/**)"
+    ]
+  }
+}

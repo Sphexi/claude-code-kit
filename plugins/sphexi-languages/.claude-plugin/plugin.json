@@ -1,0 +1,17 @@
+{
+  "name": "sphexi-languages",
+  "version": "0.1.0",
+  "description": "Bash and POSIX shell, Go, and general developer skills (git, error handling, auth, SQL, e2e testing).",
+  "author": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT",
+  "keywords": [
+    "developer-essentials",
+    "shell-scripting",
+    "systems-programming"
+  ]
+}

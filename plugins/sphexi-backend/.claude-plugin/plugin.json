@@ -1,0 +1,19 @@
+{
+  "name": "sphexi-backend",
+  "version": "0.1.0",
+  "description": "Backend architecture, API scaffolding, database design and migrations, and full-stack feature orchestration.",
+  "author": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT",
+  "keywords": [
+    "api-scaffolding",
+    "backend-development",
+    "database-design",
+    "database-migrations",
+    "full-stack-orchestration"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "sphexi-ai",
+  "version": "0.1.0",
+  "description": "LLM application development: RAG, embeddings, vector search, prompt engineering and LLM evaluation.",
+  "author": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT",
+  "keywords": [
+    "llm-application-dev"
+  ]
+}

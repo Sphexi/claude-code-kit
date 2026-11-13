@@ -1,0 +1,16 @@
+{
+  "name": "sphexi-infra",
+  "version": "0.1.0",
+  "description": "Cloud architecture, Kubernetes, Terraform, service mesh and CI/CD pipelines.",
+  "author": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT",
+  "keywords": [
+    "cicd-automation",
+    "cloud-infrastructure"
+  ]
+}

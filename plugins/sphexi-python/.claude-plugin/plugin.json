@@ -1,0 +1,15 @@
+{
+  "name": "sphexi-python",
+  "version": "0.1.0",
+  "description": "Modern Python: python-pro, FastAPI and Django agents plus Python pattern skills.",
+  "author": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT",
+  "keywords": [
+    "python-development"
+  ]
+}

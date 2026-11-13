@@ -1,0 +1,26 @@
+{
+  "marketplace": "sphexi",
+  "version": "0.1.0",
+  "description": "Agents, skills, output styles and curated third-party plugins for Claude Code, installable à la carte.",
+  "owner": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT",
+  "zip_prefix": "claude-code-kit",
+  "external": [
+    {
+      "name": "twingate-assistant",
+      "source": {
+        "source": "github",
+        "repo": "Twingate-Solutions/twingate-assistant"
+      },
+      "description": "Twingate zero trust network access: architecture, deployment, infrastructure as code and troubleshooting. Maintained in its own repository, whose reference docs are synced against Twingate's live documentation.",
+      "category": "networking",
+      "homepage": "https://github.com/Twingate-Solutions/twingate-assistant",
+      "license": "Apache-2.0"
+    }
+  ]
+}

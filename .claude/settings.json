@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest*)",
+      "Bash(python build/inline_shared.py*)",
+      "Bash(python build/build_plugins.py*)",
+      "Bash(python tools/vendor_sync.py)",
+      "Bash(python tools/vendor_sync.py --render-upstream*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(shellcheck *)"
+    ],
+    "deny": [
+      "Bash(git push)",
+      "Bash(git push *)",
+      "Bash(git reset --hard*)",
+      "Bash(git rebase *)",
+      "Bash(git filter-branch *)",
+      "Bash(git clean -fd*)"
+    ]
+  }
+}

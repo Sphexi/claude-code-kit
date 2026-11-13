@@ -1,0 +1,15 @@
+{
+  "description": "Applies the kit's comment and test standards at session start.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/hooks/code-standards-1.md\""
+          }
+        ]
+      }
+    ]
+  }
+}

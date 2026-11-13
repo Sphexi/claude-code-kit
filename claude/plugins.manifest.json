@@ -1,0 +1,932 @@
+{
+  "schema": "plugins-manifest.v3",
+  "generated": "2026-11-10",
+  "generated_by": "tools/vendor_sync.py",
+  "upstream_sources": {
+    "claude-code-workflows": {
+      "repo": "https://github.com/wshobson/agents",
+      "author": "Seth Hobson",
+      "vendored_at": "9c61ab243def98f72da12abd41cfcf5bcd91af9d"
+    },
+    "claude-plugins-official": {
+      "repo": "https://github.com/anthropics/claude-plugins-official",
+      "author": "Anthropic",
+      "vendored_at": "dceb15d50832e6adf380bedc26dde03d251324b9"
+    }
+  },
+  "canonical_agents": {
+    "note": "Agents upstream ships byte-identically (apart from the name line) under several plugins. One copy is kept in `owner`; the copies in `collapsed_from` are dropped by tools/vendor_sync.py and every reference to them is retargeted to the owner's declared name. The sync fails if a listed copy has diverged.",
+    "agents": {
+      "backend-architect": {
+        "owner": "backend-development",
+        "collapsed_from": [
+          "api-scaffolding",
+          "backend-api-security"
+        ]
+      },
+      "cloud-architect": {
+        "owner": "cloud-infrastructure",
+        "collapsed_from": [
+          "cicd-automation"
+        ]
+      },
+      "code-reviewer": {
+        "owner": "comprehensive-review",
+        "collapsed_from": [
+          "code-documentation",
+          "code-refactoring",
+          "git-pr-workflows",
+          "tdd-workflows"
+        ]
+      },
+      "debugger": {
+        "owner": "debugging-toolkit",
+        "collapsed_from": [
+          "unit-testing"
+        ]
+      },
+      "deployment-engineer": {
+        "owner": "cloud-infrastructure",
+        "collapsed_from": [
+          "cicd-automation",
+          "full-stack-orchestration"
+        ]
+      },
+      "django-pro": {
+        "owner": "python-development",
+        "collapsed_from": [
+          "api-scaffolding"
+        ]
+      },
+      "fastapi-pro": {
+        "owner": "python-development",
+        "collapsed_from": [
+          "api-scaffolding"
+        ]
+      },
+      "graphql-architect": {
+        "owner": "backend-development",
+        "collapsed_from": [
+          "api-scaffolding"
+        ]
+      },
+      "kubernetes-architect": {
+        "owner": "cloud-infrastructure",
+        "collapsed_from": [
+          "cicd-automation"
+        ]
+      },
+      "legacy-modernizer": {
+        "owner": "code-refactoring",
+        "collapsed_from": [
+          "dependency-management"
+        ]
+      },
+      "performance-engineer": {
+        "owner": "performance-testing-review",
+        "collapsed_from": [
+          "full-stack-orchestration"
+        ]
+      },
+      "security-auditor": {
+        "owner": "security-scanning",
+        "collapsed_from": [
+          "comprehensive-review",
+          "full-stack-orchestration",
+          "security-compliance"
+        ]
+      },
+      "tdd-orchestrator": {
+        "owner": "tdd-workflows",
+        "collapsed_from": [
+          "backend-development"
+        ]
+      },
+      "terraform-specialist": {
+        "owner": "cloud-infrastructure",
+        "collapsed_from": [
+          "cicd-automation"
+        ]
+      },
+      "test-automator": {
+        "owner": "unit-testing",
+        "collapsed_from": [
+          "full-stack-orchestration",
+          "performance-testing-review"
+        ]
+      }
+    }
+  },
+  "accepted_duplicate_agents": {
+    "note": "Agent file stems still defined by more than one vendored plugin after the canonical collapse — copies whose content genuinely differs. Each declares a unique `<plugin>-<agent>` name, so addressing is unambiguous. tests/python/test_plugin_manifest.py fails on any duplicate not listed here.",
+    "agents": {
+      "code-reviewer": [
+        "comprehensive-review",
+        "feature-dev",
+        "pr-review-toolkit"
+      ],
+      "performance-engineer": [
+        "backend-development",
+        "performance-testing-review"
+      ],
+      "security-auditor": [
+        "backend-development",
+        "security-scanning"
+      ],
+      "test-automator": [
+        "backend-development",
+        "unit-testing"
+      ]
+    }
+  },
+  "plugins": [
+    {
+      "name": "python-development",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/python-development",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.4",
+      "license": "MIT",
+      "bundle": "sphexi-python",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/django-pro.md",
+        "agents/fastapi-pro.md",
+        "agents/python-pro.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "django-pro",
+          "fastapi-pro",
+          "python-pro"
+        ],
+        "commands": [
+          "python-scaffold"
+        ],
+        "skills": [
+          "async-python-patterns",
+          "python-anti-patterns",
+          "python-background-jobs",
+          "python-code-style",
+          "python-configuration",
+          "python-design-patterns",
+          "python-error-handling",
+          "python-observability",
+          "python-packaging",
+          "python-performance-optimization",
+          "python-project-structure",
+          "python-resilience",
+          "python-resource-management",
+          "python-testing-patterns",
+          "python-type-safety",
+          "uv-package-manager"
+        ]
+      }
+    },
+    {
+      "name": "backend-development",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/backend-development",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.3.3",
+      "license": "MIT",
+      "bundle": "sphexi-backend",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/backend-architect.md",
+        "agents/event-sourcing-architect.md",
+        "agents/temporal-python-pro.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "backend-architect",
+          "event-sourcing-architect",
+          "graphql-architect",
+          "performance-engineer",
+          "security-auditor",
+          "temporal-python-pro",
+          "test-automator"
+        ],
+        "commands": [
+          "feature-development"
+        ],
+        "skills": [
+          "api-design-principles",
+          "architecture-patterns",
+          "cqrs-implementation",
+          "event-store-design",
+          "microservices-patterns",
+          "projection-patterns",
+          "saga-orchestration",
+          "temporal-python-testing",
+          "workflow-orchestration-patterns"
+        ]
+      }
+    },
+    {
+      "name": "cloud-infrastructure",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/cloud-infrastructure",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.3.3",
+      "license": "MIT",
+      "bundle": "sphexi-infra",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "cloud-architect",
+          "deployment-engineer",
+          "hybrid-cloud-architect",
+          "kubernetes-architect",
+          "network-engineer",
+          "service-mesh-expert",
+          "terraform-specialist"
+        ],
+        "skills": [
+          "cost-optimization",
+          "hybrid-cloud-networking",
+          "istio-traffic-management",
+          "linkerd-patterns",
+          "mtls-configuration",
+          "multi-cloud-architecture",
+          "service-mesh-observability",
+          "terraform-module-library"
+        ]
+      }
+    },
+    {
+      "name": "security-scanning",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/security-scanning",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.3.3",
+      "license": "MIT",
+      "bundle": "sphexi-security",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "security-auditor",
+          "threat-modeling-expert"
+        ],
+        "commands": [
+          "security-dependencies",
+          "security-hardening",
+          "security-sast"
+        ],
+        "skills": [
+          "attack-tree-construction",
+          "sast-configuration",
+          "security-requirement-extraction",
+          "stride-analysis-patterns",
+          "threat-mitigation-mapping"
+        ]
+      }
+    },
+    {
+      "name": "comprehensive-review",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/comprehensive-review",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.3.2",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": true,
+      "files_modified": [
+        "commands/full-review.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "architect-review",
+          "code-reviewer"
+        ],
+        "commands": [
+          "full-review",
+          "pr-enhance"
+        ]
+      }
+    },
+    {
+      "name": "full-stack-orchestration",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/full-stack-orchestration",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.3.2",
+      "license": "MIT",
+      "bundle": "sphexi-backend",
+      "local_modifications": true,
+      "files_modified": [
+        "commands/full-stack-feature.md"
+      ],
+      "files_added": [],
+      "components": {
+        "commands": [
+          "full-stack-feature"
+        ]
+      }
+    },
+    {
+      "name": "code-documentation",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/code-documentation",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "docs-architect",
+          "tutorial-engineer"
+        ],
+        "commands": [
+          "code-explain",
+          "doc-generate"
+        ]
+      }
+    },
+    {
+      "name": "debugging-toolkit",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/debugging-toolkit",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "debugger",
+          "dx-optimizer"
+        ],
+        "commands": [
+          "smart-debug"
+        ]
+      }
+    },
+    {
+      "name": "git-pr-workflows",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/git-pr-workflows",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.3.2",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": true,
+      "files_modified": [
+        "commands/git-workflow.md"
+      ],
+      "files_added": [],
+      "components": {
+        "commands": [
+          "git-workflow",
+          "onboard",
+          "pr-enhance"
+        ]
+      }
+    },
+    {
+      "name": "unit-testing",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/unit-testing",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "test-automator"
+        ],
+        "commands": [
+          "test-generate"
+        ]
+      }
+    },
+    {
+      "name": "performance-testing-review",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/performance-testing-review",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.3",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/performance-engineer.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "performance-engineer"
+        ],
+        "commands": [
+          "ai-review",
+          "multi-agent-review"
+        ]
+      }
+    },
+    {
+      "name": "code-refactoring",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/code-refactoring",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "legacy-modernizer"
+        ],
+        "commands": [
+          "context-restore",
+          "refactor-clean",
+          "tech-debt"
+        ]
+      }
+    },
+    {
+      "name": "database-design",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/database-design",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-backend",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/sql-pro.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "database-architect",
+          "sql-pro"
+        ],
+        "skills": [
+          "postgresql-table-design"
+        ]
+      }
+    },
+    {
+      "name": "database-migrations",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/database-migrations",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-backend",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/database-optimizer.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "database-admin",
+          "database-optimizer"
+        ],
+        "commands": [
+          "migration-observability",
+          "sql-migrations"
+        ]
+      }
+    },
+    {
+      "name": "cicd-automation",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/cicd-automation",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.4",
+      "license": "MIT",
+      "bundle": "sphexi-infra",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "devops-troubleshooter"
+        ],
+        "commands": [
+          "workflow-automate"
+        ],
+        "skills": [
+          "deployment-pipeline-design",
+          "github-actions-templates",
+          "gitlab-ci-patterns",
+          "secrets-management"
+        ]
+      }
+    },
+    {
+      "name": "security-compliance",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/security-compliance",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-security",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "commands": [
+          "compliance-check"
+        ]
+      }
+    },
+    {
+      "name": "backend-api-security",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/backend-api-security",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-security",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/backend-security-coder.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "backend-security-coder"
+        ]
+      }
+    },
+    {
+      "name": "frontend-mobile-security",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/frontend-mobile-security",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-security",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/frontend-developer.md",
+        "agents/frontend-security-coder.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "frontend-developer",
+          "frontend-security-coder",
+          "mobile-security-coder"
+        ],
+        "commands": [
+          "xss-scan"
+        ]
+      }
+    },
+    {
+      "name": "api-scaffolding",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/api-scaffolding",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.4",
+      "license": "MIT",
+      "bundle": "sphexi-backend",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "skills": [
+          "fastapi-templates"
+        ]
+      }
+    },
+    {
+      "name": "accessibility-compliance",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/accessibility-compliance",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.4",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "ui-visual-validator"
+        ],
+        "commands": [
+          "accessibility-audit"
+        ],
+        "skills": [
+          "screen-reader-testing",
+          "wcag-audit-patterns"
+        ]
+      }
+    },
+    {
+      "name": "tdd-workflows",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/tdd-workflows",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.3.2",
+      "license": "MIT",
+      "bundle": "sphexi-review",
+      "local_modifications": true,
+      "files_modified": [
+        "commands/tdd-cycle.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "tdd-orchestrator"
+        ],
+        "commands": [
+          "tdd-cycle",
+          "tdd-green",
+          "tdd-red",
+          "tdd-refactor"
+        ]
+      }
+    },
+    {
+      "name": "dependency-management",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/dependency-management",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.2",
+      "license": "MIT",
+      "bundle": "sphexi-security",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "commands": [
+          "deps-audit"
+        ]
+      }
+    },
+    {
+      "name": "shell-scripting",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/shell-scripting",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.5",
+      "license": "MIT",
+      "bundle": "sphexi-languages",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "bash-pro",
+          "posix-shell-pro"
+        ],
+        "skills": [
+          "bash-defensive-patterns",
+          "bats-testing-patterns",
+          "shellcheck-configuration"
+        ]
+      }
+    },
+    {
+      "name": "systems-programming",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/systems-programming",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.2.4",
+      "license": "MIT",
+      "bundle": "sphexi-languages",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/golang-pro.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "golang-pro"
+        ],
+        "skills": [
+          "go-concurrency-patterns",
+          "memory-safety-patterns",
+          "rust-async-patterns"
+        ]
+      }
+    },
+    {
+      "name": "developer-essentials",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/developer-essentials",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "1.0.5",
+      "license": "MIT",
+      "bundle": "sphexi-languages",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "skills": [
+          "auth-implementation-patterns",
+          "code-review-excellence",
+          "debugging-strategies",
+          "e2e-testing-patterns",
+          "error-handling-patterns",
+          "git-advanced-workflows",
+          "sql-optimization-patterns"
+        ]
+      }
+    },
+    {
+      "name": "llm-application-dev",
+      "upstream_marketplace": "claude-code-workflows",
+      "source_repo": "https://github.com/wshobson/agents",
+      "source_path": "plugins/llm-application-dev",
+      "upstream_commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "upstream_version": "2.0.8",
+      "license": "MIT",
+      "bundle": "sphexi-ai",
+      "local_modifications": true,
+      "files_modified": [
+        ".claude-plugin/plugin.json",
+        "agents/ai-engineer.md",
+        "agents/prompt-engineer.md",
+        "agents/vector-database-engineer.md",
+        "commands/langchain-agent.md",
+        "commands/prompt-optimize.md",
+        "skills/langchain-architecture/SKILL.md",
+        "skills/llm-evaluation/SKILL.md",
+        "skills/prompt-engineering-patterns/SKILL.md",
+        "skills/rag-implementation/SKILL.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "ai-engineer",
+          "prompt-engineer",
+          "vector-database-engineer"
+        ],
+        "commands": [
+          "ai-assistant",
+          "langchain-agent",
+          "prompt-optimize"
+        ],
+        "skills": [
+          "embedding-strategies",
+          "hybrid-search-implementation",
+          "langchain-architecture",
+          "llm-evaluation",
+          "prompt-engineering-patterns",
+          "rag-implementation",
+          "similarity-search-patterns",
+          "vector-index-tuning"
+        ]
+      }
+    },
+    {
+      "name": "pr-review-toolkit",
+      "upstream_marketplace": "claude-plugins-official",
+      "source_repo": "https://github.com/anthropics/claude-plugins-official",
+      "source_path": "plugins/pr-review-toolkit",
+      "upstream_commit": "dceb15d50832e6adf380bedc26dde03d251324b9",
+      "upstream_version": "1.0.1",
+      "license": "Apache-2.0",
+      "bundle": "sphexi-review",
+      "local_modifications": true,
+      "files_modified": [
+        "agents/code-reviewer.md",
+        "agents/code-simplifier.md",
+        "agents/comment-analyzer.md",
+        "agents/pr-test-analyzer.md",
+        "agents/silent-failure-hunter.md",
+        "agents/type-design-analyzer.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "code-reviewer",
+          "code-simplifier",
+          "comment-analyzer",
+          "pr-test-analyzer",
+          "silent-failure-hunter",
+          "type-design-analyzer"
+        ],
+        "commands": [
+          "review-pr"
+        ]
+      }
+    },
+    {
+      "name": "skill-creator",
+      "upstream_marketplace": "claude-plugins-official",
+      "source_repo": "https://github.com/anthropics/claude-plugins-official",
+      "source_path": "plugins/skill-creator",
+      "upstream_commit": "dceb15d50832e6adf380bedc26dde03d251324b9",
+      "upstream_version": "commit-sha",
+      "license": "Apache-2.0",
+      "bundle": "sphexi-core",
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {
+        "skills": [
+          "skill-creator"
+        ]
+      }
+    },
+    {
+      "name": "security-guidance",
+      "upstream_marketplace": "claude-plugins-official",
+      "source_repo": "https://github.com/anthropics/claude-plugins-official",
+      "source_path": "plugins/security-guidance",
+      "upstream_commit": "dceb15d50832e6adf380bedc26dde03d251324b9",
+      "upstream_version": "2.0.19",
+      "license": "Apache-2.0",
+      "bundle": null,
+      "local_modifications": false,
+      "files_modified": [],
+      "files_added": [],
+      "components": {}
+    },
+    {
+      "name": "pyright-lsp",
+      "upstream_marketplace": "claude-plugins-official",
+      "source_repo": "https://github.com/anthropics/claude-plugins-official",
+      "source_path": "plugins/pyright-lsp",
+      "upstream_commit": "dceb15d50832e6adf380bedc26dde03d251324b9",
+      "upstream_version": "1.0.0",
+      "license": "Apache-2.0",
+      "bundle": null,
+      "local_modifications": true,
+      "files_modified": [],
+      "files_added": [
+        ".claude-plugin/plugin.json"
+      ],
+      "components": {}
+    },
+    {
+      "name": "feature-dev",
+      "upstream_marketplace": "claude-plugins-official",
+      "source_repo": "https://github.com/anthropics/claude-plugins-official",
+      "source_path": "plugins/feature-dev",
+      "upstream_commit": "dceb15d50832e6adf380bedc26dde03d251324b9",
+      "upstream_version": "1.0.1",
+      "license": "Apache-2.0",
+      "bundle": "sphexi-review",
+      "local_modifications": true,
+      "files_modified": [
+        "README.md",
+        "agents/code-architect.md",
+        "agents/code-explorer.md",
+        "agents/code-reviewer.md",
+        "commands/feature-dev.md"
+      ],
+      "files_added": [],
+      "components": {
+        "agents": [
+          "code-architect",
+          "code-explorer",
+          "code-reviewer"
+        ],
+        "commands": [
+          "feature-dev"
+        ]
+      }
+    }
+  ]
+}

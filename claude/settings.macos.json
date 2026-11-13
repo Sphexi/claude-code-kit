@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf /System/*)",
+      "Bash(rm -rf /Library/*)",
+      "Bash(rm -rf /Applications/*)",
+      "Bash(rm -rf /Users/*)",
+      "Bash(rm -rf /usr/*)",
+      "Bash(chmod -R 777 /*)",
+      "Bash(chown -R * /)",
+      "Bash(diskutil erase*)",
+      "Bash(diskutil partitionDisk *)",
+      "Bash(diskutil apfs deleteContainer *)",
+      "Bash(diskutil apfs deleteVolume *)",
+      "Bash(csrutil *)",
+      "Bash(nvram *)",
+      "Bash(spctl --master-disable)",
+      "Bash(sysadminctl *)",
+      "Bash(dscl . -delete *)",
+      "Bash(dscl . -create *)",
+      "Bash(shutdown *)",
+      "Bash(reboot)",
+      "Bash(reboot *)",
+      "Bash(halt)",
+      "Read(/etc/sudoers)",
+      "Read(/etc/sudoers.d/**)",
+      "Read(~/Library/Keychains/**)",
+      "Edit(/etc/sudoers)",
+      "Edit(/etc/sudoers.d/**)",
+      "Edit(~/Library/Keychains/**)"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "outputStyle": "Terse (Full)",
+  "permissions": {
+    "deny": [
+      "Bash(git push)",
+      "Bash(git push *)",
+      "Bash(sudo *)",
+      "Bash(* --force)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf /*)",
+      "Bash(dd *)",
+      "Bash(mkfs *)",
+      "Bash(mkfs.* *)"
+    ]
+  }
+}

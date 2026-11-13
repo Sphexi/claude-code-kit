@@ -1,0 +1,130 @@
+{
+  "name": "sphexi",
+  "description": "Agents, skills, output styles and curated third-party plugins for Claude Code, installable à la carte.",
+  "version": "0.1.0",
+  "owner": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "plugins": [
+    {
+      "name": "sphexi-core",
+      "source": "./plugins/sphexi-core",
+      "description": "Thirteen specialist subagents; the systematic-debugging, code-comments, test-discipline and skill-creator skills; three terseness output styles; and a session-start hook that applies the comment and test standards.",
+      "category": "workflow",
+      "tags": [
+        "agents",
+        "skills",
+        "output-styles",
+        "code-standards"
+      ]
+    },
+    {
+      "name": "sphexi-review",
+      "source": "./plugins/sphexi-review",
+      "description": "Code review, refactoring, testing and debugging: multi-perspective review, PR review agents, feature-dev workflow, TDD cycle, unit testing and accessibility audits.",
+      "category": "code-review",
+      "tags": [
+        "review",
+        "testing",
+        "tdd",
+        "refactoring",
+        "debugging",
+        "accessibility"
+      ],
+      "dependencies": [
+        "sphexi-security"
+      ]
+    },
+    {
+      "name": "sphexi-security",
+      "source": "./plugins/sphexi-security",
+      "description": "Security review: SAST, threat modelling, compliance checks, API and frontend hardening, dependency audits.",
+      "category": "security",
+      "tags": [
+        "security",
+        "sast",
+        "threat-modeling",
+        "compliance",
+        "dependencies"
+      ]
+    },
+    {
+      "name": "sphexi-python",
+      "source": "./plugins/sphexi-python",
+      "description": "Modern Python: python-pro, FastAPI and Django agents plus Python pattern skills.",
+      "category": "language",
+      "tags": [
+        "python",
+        "fastapi",
+        "django"
+      ]
+    },
+    {
+      "name": "sphexi-languages",
+      "source": "./plugins/sphexi-languages",
+      "description": "Bash and POSIX shell, Go, and general developer skills (git, error handling, auth, SQL, e2e testing).",
+      "category": "language",
+      "tags": [
+        "bash",
+        "shell",
+        "go",
+        "git",
+        "sql"
+      ]
+    },
+    {
+      "name": "sphexi-backend",
+      "source": "./plugins/sphexi-backend",
+      "description": "Backend architecture, API scaffolding, database design and migrations, and full-stack feature orchestration.",
+      "category": "backend",
+      "tags": [
+        "backend",
+        "api",
+        "database",
+        "migrations",
+        "architecture"
+      ],
+      "dependencies": [
+        "sphexi-infra",
+        "sphexi-review",
+        "sphexi-security"
+      ]
+    },
+    {
+      "name": "sphexi-infra",
+      "source": "./plugins/sphexi-infra",
+      "description": "Cloud architecture, Kubernetes, Terraform, service mesh and CI/CD pipelines.",
+      "category": "infrastructure",
+      "tags": [
+        "cloud",
+        "kubernetes",
+        "terraform",
+        "cicd"
+      ]
+    },
+    {
+      "name": "sphexi-ai",
+      "source": "./plugins/sphexi-ai",
+      "description": "LLM application development: RAG, embeddings, vector search, prompt engineering and LLM evaluation.",
+      "category": "ai",
+      "tags": [
+        "llm",
+        "rag",
+        "embeddings",
+        "prompt-engineering"
+      ]
+    },
+    {
+      "name": "twingate-assistant",
+      "source": {
+        "source": "github",
+        "repo": "Twingate-Solutions/twingate-assistant"
+      },
+      "description": "Twingate zero trust network access: architecture, deployment, infrastructure as code and troubleshooting. Maintained in its own repository, whose reference docs are synced against Twingate's live documentation.",
+      "category": "networking",
+      "homepage": "https://github.com/Twingate-Solutions/twingate-assistant",
+      "license": "Apache-2.0"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "sphexi-review",
+  "version": "0.1.0",
+  "description": "Code review, refactoring, testing and debugging: multi-perspective review, PR review agents, feature-dev workflow, TDD cycle, unit testing and accessibility audits.",
+  "author": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT AND Apache-2.0",
+  "keywords": [
+    "accessibility-compliance",
+    "code-documentation",
+    "code-refactoring",
+    "comprehensive-review",
+    "debugging-toolkit",
+    "feature-dev",
+    "git-pr-workflows",
+    "performance-testing-review",
+    "pr-review-toolkit",
+    "tdd-workflows",
+    "unit-testing"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "sphexi-security",
+  "version": "0.1.0",
+  "description": "Security review: SAST, threat modelling, compliance checks, API and frontend hardening, dependency audits.",
+  "author": {
+    "name": "sphexi",
+    "url": "https://github.com/sphexi"
+  },
+  "homepage": "https://github.com/sphexi/claude-code-kit",
+  "repository": "https://github.com/sphexi/claude-code-kit",
+  "license": "MIT",
+  "keywords": [
+    "backend-api-security",
+    "dependency-management",
+    "frontend-mobile-security",
+    "security-compliance",
+    "security-scanning"
+  ]
+}

@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.zip binary
+plugins/** linguist-generated=true
+.claude-plugin/marketplace.json linguist-generated=true
+THIRD_PARTY_NOTICES.md linguist-generated=true
+docs/plugins.md linguist-generated=true

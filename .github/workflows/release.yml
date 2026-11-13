@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Cowork zips
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python build/inline_shared.py --check
+      - run: python build/build_plugins.py --check
+      - name: Check tag against kit version
+        run: |
+          kit_version="$(python -c 'import json; print(json.load(open("build/kit.json", encoding="utf-8"))["version"])')"
+          if [ "${GITHUB_REF_NAME#v}" != "$kit_version" ]; then
+            echo "tag ${GITHUB_REF_NAME} does not match build/kit.json version ${kit_version}" >&2
+            exit 1
+          fi
+      - run: python build/build_plugins.py --zip --version "$GITHUB_REF_NAME"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cowork-zips
+          path: dist/*.zip
+          if-no-files-found: error
+
+  release:
+    name: Publish release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: cowork-zips
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          fail_on_unmatched_files: true
